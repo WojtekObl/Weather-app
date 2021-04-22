@@ -14,16 +14,27 @@
   font-size: 40px;
   margin: 40px;
 }
+
 .app__input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 400px;
+  width: 500px;
   max-width: 90%;
 }
+
 .input__geoicon {
   font-size: 35px;
   margin: 20px;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.input__geoicon :hover {
+  color: darkgreen;
+}
+.switch {
+  width: 200px;
 }
 
 
@@ -38,12 +49,24 @@ button {
   padding: 10px;
   margin-top: 20px;
 }
+.geolocation__status {
+  font-size: 12px;
+}
 
 .app__forecast {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+  margin-top: 40px;
+
+}
+.app__forecast_daily {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+  max-width: 90%;
 }
 
 .day {
@@ -51,9 +74,17 @@ button {
   flex-direction: column;
   justify-content: center;
   padding: 20px;
+  border-radius: 5px;
   background-color: lightgray;
   margin: 20px;
 }
+
+.day__data {
+  font-size: 24px;
+  font-weight:bold;
+  text-align: center;
+}
+
 .day span {
   padding: 5px;
 }

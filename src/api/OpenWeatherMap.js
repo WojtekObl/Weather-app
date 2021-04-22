@@ -8,15 +8,23 @@ const urlSearch = "https://api.openweathermap.org/geo/1.0/direct"
 
 
 
-export const fetchWeatherData = async (city) => {
-    console.log(city)
+export const fetchWeatherData = async (city, unit) => {
+
+    let tunit = "";
+        if(unit == "F"){
+        tunit="imperial";
+        } else {
+        tunit="metric";
+        };
+
     const { data } = await axios.get(url, {
+       
         params: {
             lat: city.lat,
             lon: city.lon,
             appid: apiKey,
             exclude: 'hourly,current,minutely,alerts',
-            units: "metric",
+            units: tunit,
         }
     });
 
