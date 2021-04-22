@@ -11,8 +11,21 @@
 }
 
 .app__tittle {
+  font-size: 40px;
   margin: 40px;
 }
+.app__input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+  max-width: 90%;
+}
+.input__geoicon {
+  font-size: 35px;
+  margin: 20px;
+}
+
 
 input {
   width: 800px;

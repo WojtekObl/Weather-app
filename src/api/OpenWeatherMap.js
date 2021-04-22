@@ -2,14 +2,13 @@
 import axios from "axios";
 
 const apiKey = "151b7bd3af91874b71f10e22eebed35c";
-// const url = "https://api.openweathermap.org/data/2.5/forecast/";
 const url = "https://api.openweathermap.org/data/2.5/onecall";
-const urlSearch = "http://api.openweathermap.org/geo/1.0/direct"
+const urlSearch = "https://api.openweathermap.org/geo/1.0/direct"
 
 
 
 
-export const fetchData = async (city) => {
+export const fetchWeatherData = async (city) => {
     console.log(city)
     const { data } = await axios.get(url, {
         params: {
@@ -29,7 +28,7 @@ export const searchCity = async (cityName) => {
         params: {
             q: cityName,
             appid: apiKey,
-            limit: 5,
+            limit: 8,
         }
     });
     return data;
