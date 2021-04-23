@@ -3,24 +3,44 @@
 }
 
 .App {
+  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-image: linear-gradient(#2193b0, #6dd5ed);
+  overflow: scroll;
 }
 
 .app__tittle {
-  font-size: 40px;
+  font-size: 50px;
   margin: 40px;
+  color: #fff;
+  text-align: center;
 }
 
 .app__input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 500px;
-  max-width: 90%;
+  width: 800px;
+  max-width: 95%;
+}
+
+.input__location {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  max-width: 60%;
+}
+.input__controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
 }
 
 .input__geoicon {
@@ -28,29 +48,20 @@
   margin: 20px;
   cursor: pointer;
   transition: all .3s;
+  color: rgba(255, 255, 255, 0.5)
 }
 
 .input__geoicon :hover {
-  color: darkgreen;
+  color: #fff;
 }
+
 .switch {
   width: 200px;
 }
 
-
-input {
-  width: 800px;
-  max-width: 90%;
-  font-size: 16px;
-  padding: 10px;
-}
-
-button {
-  padding: 10px;
-  margin-top: 20px;
-}
 .geolocation__status {
   font-size: 12px;
+  height: 15px;
 }
 
 .app__forecast {
@@ -58,33 +69,96 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
-
+  margin-top: 5vh;
+  color: white;
+  width: 800px;
+  max-width: 95%
 }
-.app__forecast_daily {
+
+.app__forecast_header {
+  width: 100%;
+  padding: 10px 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 800px;
-  max-width: 90%;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.app__forecast_daily {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .day {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 25%;
   padding: 20px;
   border-radius: 5px;
-  background-color: lightgray;
-  margin: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin: 20px 0px;
+  color: white;
 }
 
 .day__data {
-  font-size: 24px;
-  font-weight:bold;
+  font-size: 18px;
   text-align: center;
+
+}
+.day__weather{
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid white;
+  margin-bottom: 5px;
+
 }
 
 .day span {
   padding: 5px;
+  text-align: center;
+}
+
+@media (max-width: 550px) {
+  .app__input {
+    flex-direction: column;
+  
+  }
+  .input__controls {
+    flex-direction: column;
+  }
+  .input__location {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+  }
+  .day {
+    padding: 12px;
+    
+  }
+  .app__tittle {
+    font-size: 50px;
+    margin: 10px;
+    color: #fff;
+    text-align: center;
+  }
+  .app__forecast {
+    margin-top: 1vh;
+  }
+}
+
+@media (max-width: 400px) {
+  .app__forecast_header{
+    font-size: 10px;
+  }
+  .day__data {
+    font-size: 18px;
+  }
 }

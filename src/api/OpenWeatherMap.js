@@ -9,9 +9,8 @@ const urlSearch = "https://api.openweathermap.org/geo/1.0/direct"
 
 
 export const fetchWeatherData = async (city, unit) => {
-
     let tunit = "";
-        if(unit == "F"){
+        if(unit === "F"){
         tunit="imperial";
         } else {
         tunit="metric";
