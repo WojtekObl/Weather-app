@@ -7,8 +7,7 @@ import Controls from './components/Controls';
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCloudSun, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
-import { Button } from '@material-ui/core';
+import { faCloudSun } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -16,7 +15,6 @@ import { Button } from '@material-ui/core';
 
 
 const App = () => {
-  const [cityName, setCityName] = useState("");
   const [forecast, setForecast] = useState({});
   const [city, setCity] = useState({});
   const [showForecast, setShowForecast] = useState(false);
@@ -26,6 +24,7 @@ const App = () => {
 
 
   // get last used location from chache
+
   useEffect(() => {
     let storageCity = {
       name: localStorage.getItem('name'),
@@ -36,10 +35,12 @@ const App = () => {
     if (storageCity.name === "Your location") {
       storageCity.name = "Your last used location"
     }
-    setCity(storageCity)
-    handleForecast(storageCity);
-
-    getLocation()
+    if (storageCity.name) {
+      setCity(storageCity)
+      handleForecast(storageCity);
+    } else {
+      getLocation()
+    }
   }, []);
 
   // clear status
@@ -61,13 +62,19 @@ const App = () => {
         country: "",
       })
 
-      setCityName("Your location")
+      // setCityName("Your location")
 
       setGeolocationStatus("Geolocation data loaded. Click 'FORECAST' or search for other.")
 
     };
     const errorCallback = (error) => {
-      setGeolocationStatus(error.message)
+      if (error.code === 1) {
+        setGeolocationStatus(error.message)
+      } else if (error.code === 2) {
+        setGeolocationStatus(error.message)
+      } else if (error.code === 3) {
+        setGeolocationStatus("Geolocation timeout, try again")
+      }
     }
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback, {
       timeout: 5000
@@ -76,6 +83,7 @@ const App = () => {
 
   //fetch data, setup forecast, push to localstorage
   const handleForecast = async (location) => {
+    setGeolocationStatus("")
     try {
       const weatherData = await fetchWeatherData(location, unit)
       setForecastCity(location)
@@ -89,8 +97,13 @@ const App = () => {
       localStorage.setItem('country', `${location.country}`)
 
     } catch (error) {
-      setGeolocationStatus("Error. Wrong request")
-
+      if (error.cod === "401") {
+        setGeolocationStatus("Connection with API failed. Try again later.")
+      } else if (error.cod === "404") {
+        setGeolocationStatus("Error: Wrong request, another location.")
+      } else if (error.cod === "429") {
+        setGeolocationStatus("Error: Too many request, try again later.")
+      }
     }
 
   };
@@ -105,16 +118,14 @@ const App = () => {
       <div className="app__input">
         <Input
           city={city}
-          cityName={cityName}
-          setCityName={setCityName}
           setCity={setCity}
           getLocation={() => getLocation()}
           searchCity={searchCity}
         />
-        <Controls unit={unit} setUnit={setUnit} handleForecast={(city) => handleForecast(city)} city={city}/>
+        <Controls unit={unit} setUnit={setUnit} handleForecast={(city) => handleForecast(city)} city={city} />
       </div>
-      
-      <div className="geolocation__status">
+
+      <div className="geolocation__status" title="status">
         <p><span style={{ color: 'lightgray' }} className="geolocation__status">{geolocationStatus}</span></p>
       </div>
 

@@ -17,7 +17,6 @@ export const fetchWeatherData = async (city, unit) => {
         };
 
     const { data } = await axios.get(url, {
-       
         params: {
             lat: city.lat,
             lon: city.lon,

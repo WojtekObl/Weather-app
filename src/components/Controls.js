@@ -1,8 +1,25 @@
 import React from 'react'
-import { Button } from '@material-ui/core';
+import { Button, withStyles } from '@material-ui/core';
 
 
-function Controls({unit, setUnit, city, handleForecast}) {
+
+function Controls({ unit, setUnit, city, handleForecast }) {
+    
+    const StyledButton = withStyles({
+        root: {
+          background: 'rgba(255,255,255, .2)',
+          borderRadius: 3,
+          margin: 5,
+          border: 0,
+          color: 'white',
+          height: 40    ,
+          padding: '0px 20px',
+          '&:hover': {
+            background: 'rgba(255,255,255, .3)',
+            boxShadow: '0px 0px 5px 2px rgba(255, 255, 255, .1)',
+          },
+        },
+      })(Button);
 
 
     //change unit for forecast
@@ -18,24 +35,24 @@ function Controls({unit, setUnit, city, handleForecast}) {
     return (
         <div className="input__controls">
             <Button
-                size="small"
+                id="toggleunit__button"
+                size="large"
                 style={{ margin: 5, color: 'white' }}
                 onClick={() => toggleUnit()}
             >
-                TOOGLE UNIT = {unit}&deg;
+                F&deg;/C&deg;:  {unit}&deg;
           </Button>
 
-            <Button
+            <StyledButton
                 size="large"
-                style={{ margin: 5, color: 'white' }}
+                // style={{ margin: 5, color: 'white' }}
                 className="input__button"
                 disabled={!city}
                 onClick={() => {
-                    console.log(city)
                     handleForecast(city);
                 }}>
                 Forecast
-          </Button>
+          </StyledButton>
         </div>
     )
 }

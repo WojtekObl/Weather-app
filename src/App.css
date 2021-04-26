@@ -34,6 +34,7 @@
   justify-content: center;
   align-items: center;
   max-width: 60%;
+
 }
 .input__controls {
   display: flex;
@@ -45,7 +46,7 @@
 
 .input__geoicon {
   font-size: 35px;
-  margin: 20px;
+  margin: 15px;
   cursor: pointer;
   transition: all .3s;
   color: rgba(255, 255, 255, 0.5)
@@ -125,6 +126,10 @@
 }
 
 @media (max-width: 550px) {
+  .App {
+    height: auto;
+    min-height: 100vh;
+  }
   .app__input {
     flex-direction: column;
   
@@ -132,6 +137,7 @@
   .input__controls {
     flex-direction: column;
   }
+
   .input__location {
     display: flex;
     flex-direction: row;
@@ -160,5 +166,8 @@
   }
   .day__data {
     font-size: 18px;
+  }
+  .input__location {
+    max-width: 95%;
   }
 }
