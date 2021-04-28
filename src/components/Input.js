@@ -10,23 +10,27 @@ import { withStyles } from '@material-ui/core';
 
 
 
-function Input({ searchCity, setCity, getLocation }) {
+function Input({ city, handleForecast, searchCity, setCity, getLocation }) {
   const [cityName, setCityName] = useState("");
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState([]);
   const loading = open && options.length === 0;
 
-  const StyledTextField = withStyles({
-    root: {
-      background: 'rgba(255,255,255, .2)',
-      borderColor: 'red',
-      borderRadius: 3,
-    },
-    label: {
-      color: 'white',
-    }
-  })(TextField);
 
+  // some problem with loading options
+  // const StyledTextField = withStyles({
+  //   root: {
+  //     background: 'rgba(255,255,255, .2)',
+  //     borderColor: 'red',
+  //     borderRadius: 3,
+  //   },
+  //   label: {
+  //     color: 'white',
+  //   }
+  // })(TextField);
+
+
+  //handle fetching options to input
 
   useEffect(() => {
     let active = true;
@@ -53,7 +57,13 @@ function Input({ searchCity, setCity, getLocation }) {
     };
   }, [cityName, loading]);
 
+  // forecast on 'enter'
 
+  const onKeyUp = (event) => {
+    if (event.charCode === 13 && city) {
+      handleForecast(city)
+    }
+  }
 
   return (
 
@@ -74,7 +84,7 @@ function Input({ searchCity, setCity, getLocation }) {
         getOptionLabel={(option) => `${option.name}, ${option.country}`}
         onHighlightChange={(e, option, auto) => {
           // console.log('option',city);
-          setCity(option)
+          setCity(option);
         }}
         options={options}
         loading={loading}
@@ -83,11 +93,13 @@ function Input({ searchCity, setCity, getLocation }) {
             id="name"
             value={cityName}
             onChange={(e) => setCityName(e.target.value)}
+            onKeyPress={(e) => onKeyUp(e)}
             {...params}
             label={'Search City'}
             variant="outlined"
             placeholder="Input exact city name"
             InputProps={{
+              
               ...params.InputProps,
               endAdornment: (
                 <React.Fragment>
@@ -100,7 +112,7 @@ function Input({ searchCity, setCity, getLocation }) {
           />
         )}
       />
-      <FontAwesomeIcon onClick={() => getLocation()} className="input__geoicon" icon={faMapMarkerAlt} aria-hidden="false" focusable="true" />
+      <button className="input__geolocalisation_button"><FontAwesomeIcon onClick={() => getLocation()} icon={faMapMarkerAlt} aria-hidden="false" focusable="true" /></button>
 
     </div>
 

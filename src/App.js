@@ -121,6 +121,8 @@ const App = () => {
           setCity={setCity}
           getLocation={() => getLocation()}
           searchCity={searchCity}
+          handleForecast={handleForecast}
+          city={city}
         />
         <Controls unit={unit} setUnit={setUnit} handleForecast={(city) => handleForecast(city)} city={city} />
       </div>

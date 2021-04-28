@@ -36,6 +36,7 @@
   max-width: 60%;
 
 }
+
 .input__controls {
   display: flex;
   flex-direction: row;
@@ -44,15 +45,18 @@
   max-width: 100%;
 }
 
-.input__geoicon {
-  font-size: 35px;
-  margin: 15px;
+.input__geolocalisation_button {
+  background-color: transparent;
+  border: none;
   cursor: pointer;
   transition: all .3s;
-  color: rgba(255, 255, 255, 0.5)
+  color: rgba(255, 255, 255, 0.5);
+  margin: 15px;
+  font-size: 35px;
 }
 
-.input__geoicon :hover {
+
+.input__geolocalisation_button:hover {
   color: #fff;
 }
 
@@ -90,39 +94,49 @@
 .app__forecast_daily {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
   width: 100%;
 }
 
 .day {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
   width: 25%;
   padding: 20px;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.1);
   margin: 20px 0px;
   color: white;
+
 }
 
 .day__data {
-  font-size: 18px;
+  font-size: 1rem;
   text-align: center;
-
 }
-.day__weather{
-  font-size: 24px;
+
+.day__icon {
+  height: 100px;
+  width: 100px;
+  margin-bottom: -25px;
+  margin-top: -15px;
+}
+
+.day__weather {
+  font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
   border-bottom: 1px solid white;
   margin-bottom: 5px;
+  width: 90%;
 
 }
 
 .day span {
   padding: 5px;
   text-align: center;
+
 }
 
 @media (max-width: 550px) {
@@ -130,10 +144,12 @@
     height: auto;
     min-height: 100vh;
   }
+
   .app__input {
     flex-direction: column;
-  
+
   }
+
   .input__controls {
     flex-direction: column;
   }
@@ -145,29 +161,84 @@
     align-items: center;
     max-width: 100%;
   }
+
   .day {
     padding: 12px;
-    
+    margin-top: 10px;
   }
+
   .app__tittle {
     font-size: 50px;
     margin: 10px;
     color: #fff;
     text-align: center;
   }
+
   .app__forecast {
     margin-top: 1vh;
   }
 }
 
 @media (max-width: 400px) {
-  .app__forecast_header{
-    font-size: 10px;
+  .app__forecast_header {
+    font-size: 12px;
   }
+
+  .app__tittle {
+    font-size: 35px;
+
+  }
+
   .day__data {
-    font-size: 18px;
+    font-size: 16px;
   }
+
   .input__location {
     max-width: 95%;
+  }
+
+  .day__icon {
+    height: 100px;
+    width: 100px;
+  }
+
+  .day__weather {
+    font-size: 1.2rem;
+  }
+
+  .day__additional {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 350px) {
+  .app__forecast_header {
+    font-size: 12px;
+  }
+
+  .app__tittle {
+    font-size: 30px;
+
+  }
+
+  .day__data {
+    font-size: 14px;
+  }
+
+  .input__location {
+    max-width: 95%;
+  }
+
+  .day__icon {
+    height: 80px;
+    width: 80px;
+  }
+
+  .day__weather {
+    font-size: 1rem;
+  }
+
+  .day__additional {
+    font-size: 10px;
   }
 }
