@@ -1,12 +1,8 @@
-
 import axios from "axios";
 
 const apiKey = "151b7bd3af91874b71f10e22eebed35c";
 const url = "https://api.openweathermap.org/data/2.5/onecall";
 const urlSearch = "https://api.openweathermap.org/geo/1.0/direct"
-
-
-
 
 export const fetchWeatherData = async (city, unit) => {
     let tunit = "";

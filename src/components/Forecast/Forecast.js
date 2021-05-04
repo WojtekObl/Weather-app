@@ -1,23 +1,18 @@
-
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 
+const getDateStringFromTimestamp = (timestamp) => {
 
-
-
-const convertDate = (timestamp) => {
-
-    const Unix = new Date((timestamp) * 1000);
-    let m = Unix.getMonth() + 1;
-    const d = Unix.getDate();
-    if (m < 10) {
-        m = "0" + m;
+    const timeFromTimestamp = new Date((timestamp) * 1000);
+    let month = timeFromTimestamp.getMonth() + 1;
+    const day = timeFromTimestamp.getDate();
+    if (month < 10) {
+        month = "0" + month;
     };
 
-    return d + "." + m;
+    return day + "." + month;
 }
-
 
 function Forecast({ forecast, city, unit }) {
 
@@ -29,14 +24,8 @@ function Forecast({ forecast, city, unit }) {
     useEffect(() => {
         setLocation(city)
         setTunit(unit)
-        if (unit === "F") {
-            setWunit("mph")
-        } else {
-            setWunit("km/h")
-        }
+        setWunit(unit === "F" ? "mph" : "km/h")
     }, [forecast])
-
-
 
     return (
         <div className="app__forecast">
@@ -45,7 +34,7 @@ function Forecast({ forecast, city, unit }) {
             </div>
             <div className="app__forecast_daily">
                 <div className="day">
-                    <span className="day__data">{convertDate(forecast.daily[1].dt)}</span>
+                    <span className="day__data">{getDateStringFromTimestamp(forecast.daily[1].dt)}</span>
                     <img className="day__icon" src={`http://openweathermap.org/img/wn/${forecast.daily[1].weather[0].icon}@2x.png`} alt="weather icon"/>
                     <span className="day__weather">{forecast.daily[1].weather[0].main} {Math.round(forecast.daily[1].temp.day)}&deg;{tunit}</span>
                     <span className="day__additional">Temp.min: {forecast.daily[1].temp.min}&deg;{tunit}</span>
@@ -53,7 +42,7 @@ function Forecast({ forecast, city, unit }) {
                     <span className="day__additional">Wind: {forecast.daily[1].wind_speed}{wunit}</span>
                 </div>
                 <div className="day">
-                    <span className="day__data">{convertDate(forecast.daily[2].dt)}</span>
+                    <span className="day__data">{getDateStringFromTimestamp(forecast.daily[2].dt)}</span>
                     <img className="day__icon" src={`http://openweathermap.org/img/wn/${forecast.daily[1].weather[0].icon}@2x.png`} alt="weather icon"/>
                     <span className="day__weather">{forecast.daily[2].weather[0].main} {Math.round(forecast.daily[2].temp.day)}&deg;{tunit}</span>
                     <span className="day__additional">Temp.min: {forecast.daily[2].temp.min}&deg;{tunit}</span>
@@ -61,7 +50,7 @@ function Forecast({ forecast, city, unit }) {
                     <span className="day__additional">Wind: {forecast.daily[2].wind_speed}{wunit}</span>
                 </div>
                 <div className="day">
-                    <span className="day__data">{convertDate(forecast.daily[3].dt)}</span>
+                    <span className="day__data">{getDateStringFromTimestamp(forecast.daily[3].dt)}</span>
                     <img className="day__icon" src={`http://openweathermap.org/img/wn/${forecast.daily[1].weather[0].icon}@2x.png`} alt="weather icon"/>
                     <span className="day__weather">{forecast.daily[3].weather[0].main} {Math.round(forecast.daily[3].temp.day)}&deg;{tunit}</span>
                     <span className="day__additional">Temp.min: {forecast.daily[3].temp.min}&deg;{tunit}</span>
@@ -70,7 +59,6 @@ function Forecast({ forecast, city, unit }) {
                 </div>
 
             </div>
-
 
         </div>
     )

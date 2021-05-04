@@ -2,33 +2,14 @@ import React, { useState, useEffect } from 'react'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
-import { withStyles } from '@material-ui/core';
-
-
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Input({ city, handleForecast, searchCity, setCity, getLocation }) {
   const [cityName, setCityName] = useState("");
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState([]);
   const loading = open && options.length === 0;
-
-
-  // some problem with loading options
-  // const StyledTextField = withStyles({
-  //   root: {
-  //     background: 'rgba(255,255,255, .2)',
-  //     borderColor: 'red',
-  //     borderRadius: 3,
-  //   },
-  //   label: {
-  //     color: 'white',
-  //   }
-  // })(TextField);
-
 
   //handle fetching options to input
 
@@ -118,6 +99,5 @@ function Input({ city, handleForecast, searchCity, setCity, getLocation }) {
 
   )
 }
-
 
 export default Input

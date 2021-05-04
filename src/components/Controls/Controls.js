@@ -1,8 +1,6 @@
 import React from 'react'
 import { Button, withStyles } from '@material-ui/core';
 
-
-
 function Controls({ unit, setUnit, city, handleForecast }) {
     
     const StyledButton = withStyles({
@@ -21,15 +19,9 @@ function Controls({ unit, setUnit, city, handleForecast }) {
         },
       })(Button);
 
-
     //change unit for forecast
     const toggleUnit = () => {
-
-        if (unit === "C") {
-            setUnit("F")
-        } else {
-            setUnit("C")
-        }
+      setUnit(prevUnit => prevUnit === "C" ? "F" : 'C') 
     }
 
     return (

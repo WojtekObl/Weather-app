@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { fetchWeatherData, searchCity } from './api/OpenWeatherMap.js';
-import Forecast from './components/Forecast';
-import Input from './components/Input'
-import Controls from './components/Controls';
-
+import Forecast from './components/Forecast/Forecast.js';
+import Input from './components/Input/Input.js'
+import Controls from './components/Controls/Controls.js';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCloudSun } from '@fortawesome/free-solid-svg-icons'
-
-
-
-
-
+import { brown } from '@material-ui/core/colors';
 
 const App = () => {
   const [forecast, setForecast] = useState({});
@@ -22,16 +17,10 @@ const App = () => {
   const [geolocationStatus, setGeolocationStatus] = useState("");
   const [unit, setUnit] = useState("C");
 
-
   // get last used location from chache
-
   useEffect(() => {
-    let storageCity = {
-      name: localStorage.getItem('name'),
-      lat: localStorage.getItem('lat'),
-      lon: localStorage.getItem('lon'),
-      country: localStorage.getItem('country'),
-    }
+    let storageCity = JSON.parse(localStorage.getItem('city'));
+
     if (storageCity.name === "Your location") {
       storageCity.name = "Your last used location"
     }
@@ -50,7 +39,6 @@ const App = () => {
     }
   }, [city]);
 
-
   // handle geolocation
   const getLocation = () => {
     setGeolocationStatus("")
@@ -61,20 +49,16 @@ const App = () => {
         lon: position.coords.longitude,
         country: "",
       })
-
       // setCityName("Your location")
-
       setGeolocationStatus("Geolocation data loaded. Click 'FORECAST' or search for other.")
-
     };
+
     const errorCallback = (error) => {
-      if (error.code === 1) {
-        setGeolocationStatus(error.message)
-      } else if (error.code === 2) {
-        setGeolocationStatus(error.message)
-      } else if (error.code === 3) {
+      if (error.code === 3) {
         setGeolocationStatus("Geolocation timeout, try again")
-      }
+      } else {
+        setGeolocationStatus(error.message)
+      } 
     }
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback, {
       timeout: 5000
@@ -91,24 +75,22 @@ const App = () => {
       setShowForecast(true);
 
       //send data of last forecast to local storage
-      localStorage.setItem('name', `${location.name}`)
-      localStorage.setItem('lat', `${location.lat}`)
-      localStorage.setItem('lon', `${location.lon}`)
-      localStorage.setItem('country', `${location.country}`)
+      localStorage.setItem('city', JSON.stringify(location))
 
     } catch (error) {
-      if (error.cod === "401") {
-        setGeolocationStatus("Connection with API failed. Try again later.")
-      } else if (error.cod === "404") {
-        setGeolocationStatus("Error: Wrong request, another location.")
-      } else if (error.cod === "429") {
-        setGeolocationStatus("Error: Too many request, try again later.")
+      switch(error.code) {
+        case '401':
+          setGeolocationStatus("Connection with API failed. Try again later.");
+          break;
+        case '404':
+          setGeolocationStatus("Error: Wrong request, another location.")
+          break;
+        case '429':
+          setGeolocationStatus("Error: Too many request, try again later.")
+          break;
       }
     }
-
   };
-
-
 
   return (
     <div className="App">
@@ -130,7 +112,6 @@ const App = () => {
       <div className="geolocation__status" title="status">
         <p><span style={{ color: 'lightgray' }} className="geolocation__status">{geolocationStatus}</span></p>
       </div>
-
 
       {showForecast &&
         <Forecast forecast={forecast} city={forecastCity} unit={unit} />
