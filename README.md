@@ -4,7 +4,7 @@
 Aplikacja prezentująca 3dniową pogodę dla wybranej lokalizacji, oparata na https://openweathermap.org/ API:
  
  - lokalizacja za pomocą koordynatów pobranych z przeglądarki, 
- - wyszukiwanie lokazliacji za wykorzystaniem API,
+ - wyszukiwanie lokazliacji z wykorzystaniem API,
  - zapis ostatnio wybranej lokalizacji w chache
  
 W aplikacji wykorzystuje:
