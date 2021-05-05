@@ -13,7 +13,7 @@ const mockGeolocation = {
 
 global.navigator.geolocation = mockGeolocation;
 
-JSON.parse = jest.fn().mockImplementationOnce(() => {
-  const object = {name: randoom}
+JSON.parse = jest.fn().mockImplementationOnce((x) => {
+  const object = {'name': x}
   return object
 });
