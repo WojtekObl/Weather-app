@@ -1,0 +1,37 @@
+.search {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  max-width: 60%;
+}
+
+.search__geolocalisation-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 15px;
+  font-size: 35px;
+}
+
+.search__geolocalisation-button:hover {
+  color: #fff;
+}
+
+@media (max-width: 550px) {
+  .search {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .search {
+    max-width: 95%;
+  }
+}

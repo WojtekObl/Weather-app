@@ -1,0 +1,13 @@
+.controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+}
+
+@media (max-width: 550px) {
+  .controls {
+    flex-direction: column;
+  }
+}

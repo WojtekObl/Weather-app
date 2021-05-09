@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
+import "./Search.css";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 
-function Input({ city, handleForecast, searchCity, setCity, getLocation }) {
+function Search({ city, handleForecast, searchCity, setCity, getLocation }) {
   const [cityName, setCityName] = useState("");
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  // listener on input changes, fetch options list from API
   useEffect(() => {
     let active = true;
 
@@ -39,7 +41,6 @@ function Input({ city, handleForecast, searchCity, setCity, getLocation }) {
   }, [cityName]);
 
   // forecast on 'enter'
-
   const onKeyUp = (event) => {
     if (event.charCode === 13 && city) {
       handleForecast(city);
@@ -47,7 +48,7 @@ function Input({ city, handleForecast, searchCity, setCity, getLocation }) {
   };
 
   return (
-    <div className="input__location">
+    <div className="search">
       <Autocomplete
         id="asynchronous-search"
         style={{ width: 400, color: "white" }}
@@ -63,7 +64,6 @@ function Input({ city, handleForecast, searchCity, setCity, getLocation }) {
         getOptionSelected={(option, value) => option.name === value.name}
         getOptionLabel={(option) => `${option.name}, ${option.country}`}
         onHighlightChange={(e, option, auto) => {
-          // console.log('option',city);
           setCity(option);
         }}
         options={options}
@@ -93,7 +93,7 @@ function Input({ city, handleForecast, searchCity, setCity, getLocation }) {
         )}
       />
       <button
-        className="input__geolocalisation_button"
+        className="search__geolocalisation-button"
         onClick={() => {
           getLocation();
         }}
@@ -108,4 +108,4 @@ function Input({ city, handleForecast, searchCity, setCity, getLocation }) {
   );
 }
 
-export default Input;
+export default Search;

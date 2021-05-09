@@ -1,16 +1,16 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import Input from "./Input.js";
+import Search from "./Search.js";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 
-describe("Input", () => {
+describe("Search", () => {
   it("calls searchCity function when cityName>2", async () => {
     const searchCity = jest.fn();
     const setCityName = jest.fn();
     const setCity = jest.fn();
 
-    render(<Input searchCity={searchCity} setCity={setCity} />);
+    render(<Search searchCity={searchCity} setCity={setCity} />);
 
     await userEvent.type(screen.getByLabelText(/Search City/), "Lond");
 
@@ -23,7 +23,7 @@ describe("Input", () => {
     const getLocation = jest.fn();
 
     render(
-      <Input
+      <Search
         searchCity={searchCity}
         setCity={setCity}
         getLocation={getLocation}

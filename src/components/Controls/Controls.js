@@ -1,4 +1,5 @@
 import React from "react";
+import './Controls.css'
 import { Button, withStyles } from "@material-ui/core";
 
 function Controls({ unit, setUnit, city, handleForecast }) {
@@ -24,9 +25,8 @@ function Controls({ unit, setUnit, city, handleForecast }) {
   };
 
   return (
-    <div className="input__controls">
+    <div className="controls">
       <Button
-        id="toggleunit__button"
         size="large"
         style={{ margin: 5, color: "white" }}
         onClick={() => toggleUnit()}

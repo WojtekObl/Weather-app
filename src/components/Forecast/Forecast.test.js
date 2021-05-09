@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import Forecast from "./Forecast.js";
 import "@testing-library/jest-dom";
-import mockupForecast from "./mockupForecast";
+import mockupForecast from "./mockupForecastData";
 
 describe("Forecast", () => {
   console.log(mockupForecast);

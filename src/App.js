@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { fetchWeatherData, searchCity } from "./api/OpenWeatherMap.js";
 import Forecast from "./components/Forecast/Forecast.js";
-import Input from "./components/Input/Input.js";
+import Search from "./components/Search/Search.js";
 import Controls from "./components/Controls/Controls.js";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,12 +19,13 @@ const App = () => {
 
   // get last used location from chache
   useEffect(() => {
-    let storageCity = JSON.parse(localStorage.getItem("city"));
+    let storageCity = {};
+    storageCity = JSON.parse(localStorage.getItem("city"));
 
-    if (storageCity.name === geoPossitionName) {
-      storageCity.name = "Your last used location";
-    }
-    if (storageCity.name) {
+    if (storageCity) {
+      if (storageCity.name === geoPossitionName) {
+        storageCity.name = "Your last used location";
+      }
       setCity(storageCity);
       handleForecast(storageCity);
     } else {
@@ -94,13 +95,13 @@ const App = () => {
   };
 
   return (
-    <div className="App">
+    <div className="app">
       <h1 className="app__tittle">
         <FontAwesomeIcon icon={faCloudSun} /> Weather Forecast
       </h1>
 
-      <div className="app__input">
-        <Input
+      <div className="app__location-search">
+        <Search
           city={city}
           setCity={setCity}
           getLocation={() => getLocation()}
@@ -116,13 +117,7 @@ const App = () => {
         />
       </div>
 
-      <div className="geolocation__status" title="status">
-        <p>
-          <span style={{ color: "lightgray" }} className="geolocation__status">
-            {geolocationStatus}
-          </span>
-        </p>
-      </div>
+      <p className="app__geolocation-status" title="status">{geolocationStatus} </p>
 
       {showForecast && (
         <Forecast forecast={forecast} city={forecastCity} unit={unit} />

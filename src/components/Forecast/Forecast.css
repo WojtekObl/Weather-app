@@ -1,0 +1,152 @@
+.forecast {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3vh;
+  color: white;
+  width: 800px;
+  max-width: 95%;
+}
+
+.forecast__header {
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.forecast__display {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 25%;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin: 20px 0px;
+  color: white;
+}
+.day__main-weather {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 5px;
+  border-bottom: 1px solid white;
+  margin-bottom: 5px;
+  width: 90%;
+}
+
+.day__additional-info {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  
+}
+.day__text {
+  text-align: center;
+  padding: 5px;
+}
+
+.day__date {
+  font-size: 1rem;
+  text-align: center;
+}
+
+.day__icon {
+  height: 100px;
+  width: 100px;
+  margin-bottom: -25px;
+  margin-top: -15px;
+}
+
+@media (max-width: 550px) {
+  .day {
+    padding: 12px;
+    margin-top: 10px;
+  }
+
+  .app__forecast {
+    margin-top: 1vh;
+  }
+}
+@media (max-width: 400px) {
+  .forecast__header {
+    font-size: 12px;
+  }
+
+  .day__data {
+    font-size: 16px;
+  }
+
+  .day__icon {
+    height: 100px;
+    width: 100px;
+  }
+
+  .day__main-weather {
+    font-size: 1.2rem;
+  }
+
+  .day__additional-info {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 350px) {
+  .day__date {
+    font-size: 14px;
+  }
+
+  .day__icon {
+    height: 80px;
+    width: 80px;
+  }
+
+  .day__main-weather {
+    font-size: 1rem;
+  }
+
+  .day__additional-info {
+    font-size: 12px;
+  }
+}
+@media (max-height: 600px) {
+  .forecast__header {
+    font-size: 12px;
+  }
+  .day__icon {
+    height: 80px;
+    width: 80px;
+  }
+  .day__main-weather {
+    font-size: 1.2rem;
+  }
+  .day__additional-info {
+    font-size: 12px;
+  }
+  .forecast {
+    margin-top: 1vh;
+  }
+  .day {
+    padding: 10px;
+    width: 30%;
+    margin: 10px 0px;
+  }
+  .day__date{
+    font-size: 14px;
+  }
+}
