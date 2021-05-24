@@ -17,7 +17,7 @@ export const fetchWeatherData = async (city, unit) => {
             lat: city.lat,
             lon: city.lon,
             appid: apiKey,
-            exclude: 'hourly,current,minutely,alerts',
+            exclude: 'hourly,minutely,alerts',
             units: tunit,
         }
     });

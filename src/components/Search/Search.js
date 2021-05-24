@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import "./Search.css";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Tooltip from "@material-ui/core/Tooltip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import "./Search.css";
 
 function Search({ city, handleForecast, searchCity, setCity, getLocation }) {
   const [cityName, setCityName] = useState("");
@@ -92,18 +93,20 @@ function Search({ city, handleForecast, searchCity, setCity, getLocation }) {
           />
         )}
       />
-      <button
-        className="search__geolocalisation-button"
-        onClick={() => {
-          getLocation();
-        }}
-      >
-        <FontAwesomeIcon
-          icon={faMapMarkerAlt}
-          aria-hidden="false"
-          focusable="true"
-        />
-      </button>
+      <Tooltip title="Use your location" arrow enterDelay={500}>
+        <button
+          className="search__geolocalisation-button"
+          onClick={() => {
+            getLocation();
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faMapMarkerAlt}
+            aria-hidden="false"
+            focusable="true"
+          />
+        </button>
+      </Tooltip>
     </div>
   );
 }
