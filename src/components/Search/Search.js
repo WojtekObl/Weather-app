@@ -93,7 +93,7 @@ function Search({ city, handleForecast, searchCity, setCity, getLocation }) {
           />
         )}
       />
-      <Tooltip title="Use your location" arrow enterDelay={500}>
+      <Tooltip title="Use your location" arrow enterDelay={500} placement="top">
         <button
           className="search__geolocalisation-button"
           onClick={() => {

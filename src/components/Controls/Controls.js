@@ -1,5 +1,5 @@
 import React from "react";
-import './Controls.css'
+import "./Controls.css";
 import { Button, withStyles } from "@material-ui/core";
 
 function Controls({ unit, setUnit, city, handleForecast }) {
@@ -36,7 +36,6 @@ function Controls({ unit, setUnit, city, handleForecast }) {
 
       <StyledButton
         size="large"
-        // style={{ margin: 5, color: 'white' }}
         className="input__button"
         disabled={!city}
         onClick={() => {

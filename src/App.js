@@ -7,6 +7,7 @@ import Controls from "./components/Controls/Controls.js";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloudSun } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const App = () => {
   const [forecast, setForecast] = useState({});
@@ -96,6 +97,7 @@ const App = () => {
 
   return (
     <div className="app">
+      <a className="git-hub-icon" href="https://github.com/WojtekObl/Weather-app" target="blank"><FontAwesomeIcon icon={faGithub} /></a>
       <h1 className="app__tittle">
         <FontAwesomeIcon icon={faCloudSun} /> Weather Forecast
       </h1>
