@@ -5,9 +5,3 @@
   align-items: center;
   max-width: 100%;
 }
-
-@media (max-width: 550px) {
-  .controls {
-    flex-direction: column;
-  }
-}

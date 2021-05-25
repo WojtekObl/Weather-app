@@ -1,29 +1,41 @@
 import React from "react";
 import "./DailyWeather.css";
 
-function DailyWeather({ forecast, wunit, tunit, getDateStringFromTimestamp, dayNo }) {
+function DailyWeather({
+  forecast,
+  wunit,
+  tunit,
+  getDateStringFromTimestamp,
+  dayKey,
+}) {
   return (
     <div className="daily-weather">
       <p className="daily-weather__date">
-        {getDateStringFromTimestamp(forecast.daily[dayNo].dt)}
+        {getDateStringFromTimestamp(forecast.daily[dayKey].dt)}
       </p>
-      <i className={`owf owf-${forecast.daily[dayNo].weather[0].id}`}></i>
-      <p className="day__main-weather">
-        {forecast.daily[1].weather[0].main}{" "}
-        {Math.round(forecast.daily[1].temp.day)}&deg;{tunit}
+      <p className="daily-weather__main-weather">
+        <i className={`owf owf-${forecast.daily[dayKey].weather[0].id}`}></i>
       </p>
-      <div className="daily-weather__additional-info">
-        <p className="daily-weather__text">
-          Temp.min: {forecast.daily[dayNo].temp.min}&deg;{tunit}
+      <div className="daily-weather__temperature">
+        <p className="daily-weather__main-temp">
+          {Math.round(forecast.daily[dayKey].temp.day)}&deg;{tunit}
         </p>
-        <p className="daily-weather__text">
-          Temp.max: {forecast.daily[dayNo].temp.max}&deg;{tunit}
-        </p>
-        <p className="day__text">
-          Wind: {forecast.daily[dayNo].wind_speed}
-          {wunit}
-        </p>
+        <div className="daily-weather__additional-temp">
+          <p>
+            {Math.round(forecast.daily[dayKey].temp.min)}&deg;{tunit}
+          </p>
+          <p>
+            {Math.round(forecast.daily[dayKey].temp.max)}&deg;{tunit}
+          </p>
+        </div>
       </div>
+      <p className="daily-weather__describtion">
+        {forecast.daily[dayKey].weather[0].description}
+      </p>
+      <p className="daily-weather__wind-speed">
+        wind speed: {Math.round(forecast.daily[dayKey].wind_speed * 10) / 10}
+        {wunit}
+      </p>
     </div>
   );
 }

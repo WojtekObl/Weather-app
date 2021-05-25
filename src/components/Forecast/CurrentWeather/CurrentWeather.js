@@ -3,27 +3,19 @@ import "./CurrentWeather.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 
-function CurrentWeather({ forecast, tunit, wunit, location }) {
-  const getCurrentDateStringFromTimestamp = (timestamp) => {
+function CurrentWeather({
+  forecast,
+  tunit,
+  wunit,
+  location,
+  getDateStringFromTimestamp,
+}) {
+  const displayDateAndTime = (timestamp) => {
+    const date = getDateStringFromTimestamp(timestamp);
     const timeFromTimestamp = new Date(timestamp * 1000);
-    let month = timeFromTimestamp.getMonth() + 1;
-    const day = timeFromTimestamp.getDate();
-    const noumberOfWeek = timeFromTimestamp.getDay();
-    const dayOfWeek = [
-      "Sunday",
-      "Monday",
-      "Thuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
     let hours = timeFromTimestamp.getHours();
     let minutes = timeFromTimestamp.getMinutes();
 
-    if (month < 10) {
-      month = "0" + month;
-    }
     if (hours < 10) {
       hours = "0" + hours;
     }
@@ -31,17 +23,7 @@ function CurrentWeather({ forecast, tunit, wunit, location }) {
       minutes = "0" + minutes;
     }
 
-    return (
-      dayOfWeek[noumberOfWeek] +
-      " " +
-      day +
-      "." +
-      month +
-      " " +
-      hours +
-      ":" +
-      minutes
-    );
+    return date + " " + hours + ":" + minutes;
   };
 
   return (
@@ -52,7 +34,7 @@ function CurrentWeather({ forecast, tunit, wunit, location }) {
           {location.country}{" "}
         </h1>
         <p className="current-weather__date">
-          {getCurrentDateStringFromTimestamp(forecast.current.dt)}
+          {displayDateAndTime(forecast.current.dt)}
         </p>
       </div>
 
@@ -91,7 +73,7 @@ function CurrentWeather({ forecast, tunit, wunit, location }) {
           </div>
           <div className="current-weather__detail-body">
             <p className="current-weather__detail-header">
-              {Math.round(forecast.current.wind_speed)}
+              {Math.round(forecast.current.wind_speed * 10) / 10}
               {wunit}
             </p>
             <p className="current-weather__detail-name">wind speed</p>

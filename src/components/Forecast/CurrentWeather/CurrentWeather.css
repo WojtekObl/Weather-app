@@ -15,10 +15,10 @@
 .current-weather__basic-info-section {
   display: flex;
   flex-direction: column;
+  margin-right: 20px;
 }
 .current-weather__icon-temp {
   display: flex;
-  
 }
 .current-weather__icon-temp > i {
   margin-right: 12px;
@@ -34,8 +34,8 @@
 
 .current-weather__detail-info-section {
   display: flex;
-  background-color: rgba(255,255,255, 0.2);
-  background-color: rgba(0,0,0, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 2px;
 }
 .current-weather__detail-body {
@@ -43,11 +43,40 @@
   flex-direction: column;
   align-items: center;
   padding: 10px 15px;
-  border-right: 1px solid rgba(255,255,255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+  justify-content: center;
+}
+
+.current-weather__detail-body:last-child {
+  border-right: none;
 }
 .current-weather__detail-header {
   font-size: 26px;
 }
 .current-weather__detail-name {
   font-size: 12px;
+}
+
+@media (max-width: 760px) {
+  .current-weather__detail-header {
+    font-size: 20px;
+  }
+}
+@media (max-width: 605px) {
+  .current-weather__detail-info-section {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .current-weather__detail-body {
+    border-right: none;
+  }
+}
+@media (max-width: 530px) {
+  .current-weather__body {
+    flex-direction: column;
+  }
+  .current-weather__detail-info-section {
+    margin-top: 15px;
+  }
 }
